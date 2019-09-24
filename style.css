@@ -1,25 +1,124 @@
 * {
-  margin: 0%;
-  padding: 0%;
-  box-sizing: border-box
+  font-family: 'arial', sans-serif;
 }
 
 #movies {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1400px;
+  margin: 0 150px;
+}
+
+body {
+  background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("img/background\ img.png");
+  background-repeat: repeat-y;
+  background-size: 100%;
+  background-attachment: fixed;
+  background-position: center bottom;
+  position: relative; 
 }
 
 .container {
     display: flex;
     flex-wrap: wrap;
+    margin: 100px;
+    text-align: center;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.001);
 }
 
 .movieDetails {
-  margin: 1rem;
-  background: white;
-  box-shadow: 2px 4px 25px rgba(0, 0, 0, .1);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all .2s linear;
-  flex: 1 1 calc(33% - 2rem)
+  align-self: center;
+  width: 180px;
+  height: 350px; 
+  margin: 20px 15px 0 15px; 
+  flex: 1 1 auto;
+  position: relative;
 }
+
+.poster {
+  margin-top: 5px;
+  border-radius: 5px;
+  padding: 2px;
+  border: 5px solid rgb(255, 208, 0);
+}
+
+.poster:hover {
+  margin-top: 5px;
+  border-radius: 5px;
+  padding: 2px;
+  border: 5px solid rgb(4, 160, 17);
+}
+
+.language {
+  font-size: 13px;
+  text-align: left;
+  padding-left: 17px;
+  color: rgb(238, 238, 238); 
+  margin-top: 3px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  padding-left: 17px; 
+  color: white;
+}
+
+.rating {
+  position: absolute;
+  bottom: 315px;
+  left: 180px;
+  height: 35px;
+  width: 35px;
+  border: 2.5px solid rgb(255, 196, 0);
+  border-radius: 180px;
+  background-color: gray; 
+  color: white;
+  font-weight: 600;
+  line-height: 35px;
+}
+
+p {
+  margin: 0;
+}
+
+.hiddenClass {
+  position: absolute; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  height: 1px; width: 1px; 
+  margin: -1px; padding: 0; border: 0; 
+}
+
+.loadMore {
+  background-image: url(img/drop.png);
+  background-size: 140px;
+  background-position: center;
+  width:50px;
+  height:50px;  
+  border-radius: 100%;  
+  padding-left: 20px; 
+  position: absolute;
+  bottom: 50px;
+  left: 732px;
+  border: 2px solid rgb(10, 11, 94);
+  outline: none;
+}
+
+.loadMore:hover { background-image: url(img/drop.gif); }
+
+.roulette {
+  background-image: url(img/roulette.png);
+  background-size: 100px;
+  border: 2px solid rgb(0, 0, 0);
+  width:50px;
+  height:50px;  
+  border-radius: 100%;  
+  padding-left: 20px; 
+  position: absolute;
+  bottom: 50px;
+  left: 1200px;
+  background-position: center;
+  outline: none;
+}
+
+.roulette:hover { background-image: url(img/roulette.gif); }
