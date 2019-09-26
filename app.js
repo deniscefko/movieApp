@@ -2,18 +2,27 @@ const apiKey = 'b0b371271a4f917bf40f513c72c92810'
 const baseUrl = `https://api.themoviedb.org/3/`
 const url = `https://api.themoviedb.org/3/movie/550?api_key=${apiKey}`
 
-function createNode (element) {
+const wholeUrl = window.location.href
+const appLocation = wholeUrl.slice(0, (wholeUrl.search('movieApp') + ('movieApp'.length + 1)))
+
+function createNode(element) {
   return document.createElement(element)
 }
 
-function append (parent, el) {
+function append(parent, el) {
   return parent.appendChild(el)
 }
 
-async function getUpcoming () {
+async function getUpcoming() {
   const root = document.getElementById('movies')
   const container = document.createElement('div')
   container.setAttribute('class', 'container')
+
+  const roulette = document.getElementById('roulette')
+
+  roulette.addEventListener('click', function (event) {
+    window.location = `${appLocation}roulette.html`
+  })
 
   const upcoming = await window.fetch(`${baseUrl}movie/upcoming?api_key=${apiKey}`)
   const upcomingJson = await upcoming.json()
@@ -38,7 +47,7 @@ async function getUpcoming () {
     img.src = `${'https://image.tmdb.org/t/p/w185' + el.poster_path}`
     img.setAttribute('id', el.id)
     img.addEventListener('click', function (event) { // redirect to movie details after clicked
-      window.location = `file:///E:/new_desktop/coding/movieApp/movieDetails.html?movieId=${event.target.id}`
+      window.location = `${appLocation}movieDetails.html?movieId=${event.target.id}`
     })
 
     const rating = createNode('div')
@@ -58,7 +67,7 @@ async function getUpcoming () {
   })
 }
 
-async function getMovieDetails (event) {
+async function getMovieDetails(event) {
   const url = event.srcElement.URL
 
   const movieId = url.substr(url.indexOf('=') + 1, url.length)
@@ -190,7 +199,11 @@ async function getMovieDetails (event) {
   }
 }
 
-function loadMore (items) {
+async function roulette() {
+  
+}
+
+function loadMore(items) {
   [].forEach.call(document.querySelectorAll('.hiddenClass'), function (item, i) { // call this selected array of data
     if (i < 8) { // show only first eight movies (four per row) - the rest have .hiddeClass appended
       item.classList.remove('hiddenClass')

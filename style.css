@@ -96,9 +96,10 @@ p {
 }
 
 .loadMore {
-  background-image: url(img/drop.png);
-  background-size: 140px;
+  background-image: url(img/loadMore.png);
+  background-size: 170px;
   background-position: center;
+  background-color: black;
   width: 50px;
   height: 50px;
   border-radius: 100%;
@@ -111,10 +112,10 @@ p {
 }
 
 .loadMore:hover {
-  background-image: url(img/drop.gif);
+  background-image: url(img/loadMore.gif);
 }
 
-.roulette {
+#roulette {
   background-image: url(img/roulette.png);
   background-size: 100px;
   border: 2px solid rgb(0, 0, 0);
@@ -140,7 +141,6 @@ p {
 #details {
   max-width: 1400px;
   margin: 0 150px;
-
 }
 
 .movieTitle {
@@ -240,4 +240,20 @@ option[checked="false"] {
 
 .invisible {
   color: transparent;
+}
+
+#rouletteCont {
+  max-width: 1400px;
+  display: flex;
+  align-items: vertical;
+}
+
+.rouletteTitle {
+  margin: 50px auto;
+  color: white;
+  width: 100%;
+}
+
+.selectGenre {
+
 }
