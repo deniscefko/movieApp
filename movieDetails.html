@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
-
+       
 <head>
-    <title>Movie App</title>
     <meta charset="utf-8" />
+    <title>Movie details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Arimo|Roboto&display=swap" rel="stylesheet">
+    
 </head>
 
-<body onload="getUpcoming()">
-    <div id="movies"></div>
-    <button class="loadMore" onclick="loadMore()"></button>
-    <button class="roulette"></button>
+<body onload="getMovieDetails(event)">
+        
+    <div id="root"></div>
+   
     <script src="app.js"></script>
+    
 </body>
 
 </html>>

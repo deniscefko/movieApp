@@ -2,11 +2,6 @@
   font-family: 'arial', sans-serif;
 }
 
-#movies {
-  max-width: 1400px;
-  margin: 0 150px;
-}
-
 body {
   background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("img/background\ img.png");
   background-repeat: repeat-y;
@@ -14,6 +9,13 @@ body {
   background-attachment: fixed;
   background-position: center bottom;
   position: relative; 
+}
+
+/* UPCOMING MOVIES */ 
+
+#movies{
+  max-width: 1400px;
+  margin: 0 150px;
 }
 
 .container {
@@ -35,8 +37,8 @@ body {
 
 .poster {
   margin-top: 5px;
-  border-radius: 5px;
   padding: 2px;
+  border-radius: 5px;  
   border: 5px solid rgb(255, 208, 0);
 }
 
@@ -63,7 +65,7 @@ body {
   color: white;
 }
 
-.rating {
+.ratings {
   position: absolute;
   bottom: 315px;
   left: 180px;
@@ -122,3 +124,96 @@ p {
 }
 
 .roulette:hover { background-image: url(img/roulette.gif); }
+
+
+
+/* MOVIE DETAILS */
+
+#details {
+  max-width: 1400px;
+  margin: 0 150px;
+  
+}
+
+.movieTitle {
+  margin: 60px 0 0 310px;
+  color: white;
+}
+
+.detailsContTop {
+  display: flex;
+  margin: 10px 300px 0 300px;
+}
+
+.detailsPoster {
+  border-radius: 5px;  
+  border: 5px solid rgb(255, 208, 0);
+}
+
+.details {
+  /* flex: auto; */
+  margin-top: 10px;
+  color: white;
+  margin-left: 40px;
+}
+
+.movieRating,
+.popularity,
+.langDetails,
+.prodCompanies,
+.plot,
+.tagline,
+.genres,
+.runtime {
+  padding: 5px;
+  font-size: 14px;
+}
+
+b {
+  font-size: 16px;
+}
+
+.imdbLogo {
+  background-size: 50px;
+}
+
+/* RATING */
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  /* text-align: center; */
+}
+.rating > option {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+
+}
+.rating > option:hover,
+.rating > option:hover ~ option {
+  color: transparent;
+}
+.rating > option:hover:before,
+.rating > option:hover ~ option:before {
+   content: "\2B50";
+   position: absolute;
+   left: 0; 
+   color: gold;
+}
+
+ option[checked="true"]:before  {
+  content: "\2B50";
+  position: absolute;
+  left: 0; 
+  color: gold;
+} 
+
+option[checked="false"] {
+  color: transparent;
+}
+
+.invisible {
+  color: transparent;
+}
+

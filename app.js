@@ -1,23 +1,21 @@
 const apiKey = 'b0b371271a4f917bf40f513c72c92810'
-const baseUrl = `https://api.themoviedb.org/3/movie`
+const baseUrl = `https://api.themoviedb.org/3/`
 const url = `https://api.themoviedb.org/3/movie/550?api_key=${apiKey}`
 
-const root = document.getElementById('movies')
-const container = document.createElement('div')
-container.setAttribute('class', 'container')
-
-function createNode (element) {
+function createNode(element) {
   return document.createElement(element)
 }
 
-function append (parent, el) {
+function append(parent, el) {
   return parent.appendChild(el)
 }
 
-append(root, container)
+async function getUpcoming() {
+  const root = document.getElementById('movies')
+  const container = document.createElement('div')
+  container.setAttribute('class', 'container')
 
-async function getUpcoming () {
-  const upcoming = await window.fetch(`${baseUrl}/upcoming?api_key=${apiKey}`)
+  const upcoming = await window.fetch(`${baseUrl}movie/upcoming?api_key=${apiKey}`)
   const upcomingJson = await upcoming.json()
   console.log(upcomingJson.results)
   let results = upcomingJson.results
@@ -38,11 +36,16 @@ async function getUpcoming () {
     const img = createNode('img')
     img.setAttribute('class', 'poster')
     img.src = `${'https://image.tmdb.org/t/p/w185' + el.poster_path}`
+    img.setAttribute('id', el.id)
+    img.addEventListener('click', function (event) {
+      window.location = `file:///E:/new_desktop/coding/movieApp/movieDetails.html?movieId=${event.target.id}`
+    })
 
     const rating = createNode('div')
-    rating.setAttribute('class', 'rating')
+    rating.setAttribute('class', 'ratings')
     rating.innerHTML = `${el.vote_average}`
 
+    append(root, container)
     append(container, movieDetails)
     append(movieDetails, img)
     append(movieDetails, title)
@@ -55,11 +58,140 @@ async function getUpcoming () {
   })
 }
 
-async function getDetails () {
-  const details = document.getElementById()
+async function getMovieDetails(event) {
+  const url = event.srcElement.URL
+
+  const movieId = url.substr(url.indexOf('=') + 1, url.length)
+
+  const response = await window.fetch(`${baseUrl}movie/${movieId}?api_key=${apiKey}`)
+  const movie = await response.json()
+  const root = document.getElementById('root')
+
+  const detailsContTop = document.createElement('div')
+  detailsContTop.setAttribute('class', 'detailsContTop')
+  append(root, detailsContTop)
+
+  const title = createNode('h1')
+  title.setAttribute('class', 'movieTitle')
+  const year = movie.release_date.split('-')
+  title.innerHTML = `${movie.title} (${year[0]})`
+
+  const img = createNode('img')
+  img.setAttribute('class', 'detailsPoster')
+  img.src = `${'https://image.tmdb.org/t/p/w300' + movie.poster_path}`
+
+  const details = createNode('div')
+  details.setAttribute('class', 'details')
+
+  const movieRating = createNode('p')
+  movieRating.setAttribute('class', 'movieRating')
+  movieRating.innerHTML = `<b>Rating: ${movie.vote_average}</b>  - out of ${movie.vote_count} votes`
+
+  const popularity = createNode('p')
+  popularity.setAttribute('class', 'popularity')
+  popularity.innerHTML = `<b>Popularity:</b> ${movie.popularity}`
+
+  const language = createNode('p')
+  language.setAttribute('class', 'langDetails')
+  language.innerHTML = `<b>Language:</b> ${movie.original_language}`
+
+  const prodCompanies = createNode('p')
+  prodCompanies.setAttribute('class', 'prodCompanies')
+  let companies = []
+  movie.production_companies.forEach(e => {
+    companies.push(e.name)
+  })
+  prodCompanies.innerHTML = `<b>Production companies:</b> ${companies.join(', ')}`
+
+  const genres = createNode('p')
+  genres.setAttribute('class', 'genres')
+  let genreArr = []
+  movie.genres.forEach(e => {
+    genreArr.push(e.name)
+  })
+  genres.innerHTML = `<b>Genres:</b> ${genreArr.join('/')}`
+
+  const tagline = createNode('p')
+  tagline.setAttribute('class', 'tagline')
+  tagline.innerHTML = `<b>Tagline:</b> ${movie.tagline}`
+
+  const plot = createNode('p')
+  plot.setAttribute('class', 'plot')
+  plot.innerHTML = `<b>Plot:</b> ${movie.overview}`
+
+  const runtime = createNode('p')
+  runtime.setAttribute('class', 'runtime')
+  runtime.innerHTML = `<b>Runtime:</b> ${movie.runtime} min`
+
+  const imdbLink = createNode('a')
+  imdbLink.setAttribute('class', 'imdbLink')
+  imdbLink.href = `https://www.imdb.com/title/${movie.imdb_id}/`
+
+  const imdbLogo = createNode('img')
+  imdbLogo.setAttribute('class', 'imdbLogo')
+  imdbLogo.src = 'img/imdb.png'
+
+  const starRating = createNode('div')
+  starRating.setAttribute('class', 'rating')
+
+  // const starRating = `<div class="rating">
+  //   <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+  //   </div>`
+
+  append(root, title)
+  append(root, detailsContTop)
+
+  append(detailsContTop, img)
+  append(detailsContTop, details)
+
+  append(details, movieRating)
+  append(details, popularity)
+  append(details, language)
+  append(details, prodCompanies)
+  append(details, genres)
+  append(details, tagline)
+  append(details, plot)
+  append(details, runtime)
+  append(details, imdbLink)
+  append(imdbLink, imdbLogo)
+
+  let userRating = window.localStorage.getItem('userRating')
+  const rateMovie = createNode('p')
+  rateMovie.innerHTML = 'Rate movie: '
+  append(details, starRating)
+  append(starRating, rateMovie)
+  if (!userRating) {
+    for (let i = 10; i > 0; i--) {
+      const stars = createNode('option')
+      stars.innerHTML = '☆'
+      stars.setAttribute('value', i)
+      stars.setAttribute('type', 'radio')
+      stars.setAttribute('id', i)
+      stars.setAttribute('name', 'stars')
+      append(starRating, stars)
+    }
+  } else {
+    rateMovie.innerHTML = `Your rating: ${userRating}`
+  }
+  let radios = document.getElementsByName('stars')
+
+  for (let i = 0; i < radios.length; i++) {
+    radios[i].onclick = function () {
+      let userRating = radios[i].value
+      console.log(userRating)
+      window.localStorage.setItem('userRating', JSON.stringify(userRating))
+      for (let j = i; j < 10; j++) {
+        radios[j].setAttribute('checked', true)
+        for (let k = i - 1; k >= 0; k--) {
+          radios[k].setAttribute('checked', false)
+        }
+      }
+    }
+  }
+
 }
 
-function loadMore (items) {
+function loadMore(items) {
   [].forEach.call(document.querySelectorAll('.hiddenClass'), function (item, i) {
     if (i < 8) {
       item.classList.remove('hiddenClass')
@@ -69,5 +201,3 @@ function loadMore (items) {
     }
   })
 }
-
-getUpcoming()
