@@ -3,34 +3,38 @@
 }
 
 body {
-  background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url("img/background\ img.png");
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("img/background\ img.png");
   background-repeat: repeat-y;
   background-size: 100%;
   background-attachment: fixed;
   background-position: center bottom;
-  position: relative; 
+  position: relative;
 }
 
-/* UPCOMING MOVIES */ 
+p {
+  margin: 0;
+} 
 
-#movies{
+/* UPCOMING MOVIES */
+
+#movies {
   max-width: 1400px;
   margin: 0 150px;
 }
 
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 100px;
-    text-align: center;
-    box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.001);
+  display: flex;
+  flex-wrap: wrap;
+  margin: 100px;
+  text-align: center;
+  box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.001);
 }
 
 .movieDetails {
   align-self: center;
   width: 180px;
-  height: 350px; 
-  margin: 20px 15px 0 15px; 
+  height: 350px;
+  margin: 20px 15px 0 15px;
   flex: 1 1 auto;
   position: relative;
 }
@@ -38,7 +42,7 @@ body {
 .poster {
   margin-top: 5px;
   padding: 2px;
-  border-radius: 5px;  
+  border-radius: 5px;
   border: 5px solid rgb(255, 208, 0);
 }
 
@@ -53,15 +57,16 @@ body {
   font-size: 13px;
   text-align: left;
   padding-left: 17px;
-  color: rgb(238, 238, 238); 
-  margin-top: 3px;
+  color: rgb(238, 238, 238);
+  margin-top: 0;
 }
 
 .title {
+  margin: 0;
   font-size: 15px;
   font-weight: 700;
   text-align: left;
-  padding-left: 17px; 
+  padding-left: 17px;
   color: white;
 }
 
@@ -73,32 +78,31 @@ body {
   width: 35px;
   border: 2.5px solid rgb(255, 196, 0);
   border-radius: 180px;
-  background-color: gray; 
+  background-color: gray;
   color: white;
   font-weight: 600;
   line-height: 35px;
 }
 
-p {
-  margin: 0;
-}
-
 .hiddenClass {
-  position: absolute; 
-  overflow: hidden; 
-  clip: rect(0 0 0 0); 
-  height: 1px; width: 1px; 
-  margin: -1px; padding: 0; border: 0; 
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
 }
 
 .loadMore {
   background-image: url(img/drop.png);
   background-size: 140px;
   background-position: center;
-  width:50px;
-  height:50px;  
-  border-radius: 100%;  
-  padding-left: 20px; 
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  padding-left: 20px;
   position: absolute;
   bottom: 50px;
   left: 732px;
@@ -106,16 +110,18 @@ p {
   outline: none;
 }
 
-.loadMore:hover { background-image: url(img/drop.gif); }
+.loadMore:hover {
+  background-image: url(img/drop.gif);
+}
 
 .roulette {
   background-image: url(img/roulette.png);
   background-size: 100px;
   border: 2px solid rgb(0, 0, 0);
-  width:50px;
-  height:50px;  
-  border-radius: 100%;  
-  padding-left: 20px; 
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  padding-left: 20px;
   position: absolute;
   bottom: 50px;
   left: 1200px;
@@ -123,7 +129,9 @@ p {
   outline: none;
 }
 
-.roulette:hover { background-image: url(img/roulette.gif); }
+.roulette:hover {
+  background-image: url(img/roulette.gif);
+}
 
 
 
@@ -132,7 +140,7 @@ p {
 #details {
   max-width: 1400px;
   margin: 0 150px;
-  
+
 }
 
 .movieTitle {
@@ -146,7 +154,7 @@ p {
 }
 
 .detailsPoster {
-  border-radius: 5px;  
+  border-radius: 5px;
   border: 5px solid rgb(255, 208, 0);
 }
 
@@ -155,6 +163,7 @@ p {
   margin-top: 10px;
   color: white;
   margin-left: 40px;
+  position: relative;
 }
 
 .movieRating,
@@ -165,8 +174,17 @@ p {
 .tagline,
 .genres,
 .runtime {
-  padding: 5px;
+  padding: 10px;
   font-size: 14px;
+  margin: 0;
+}
+
+.movieRating {
+  margin: 100px 0 0 330px; 
+}
+
+.rateMovie {
+  padding-right: 100px;
 }
 
 b {
@@ -174,7 +192,11 @@ b {
 }
 
 .imdbLogo {
+  margin-top: 10px;
   background-size: 50px;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
 }
 
 /* RATING */
@@ -182,32 +204,35 @@ b {
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
-  /* text-align: center; */
+  margin: 0 20px 0 0;
 }
-.rating > option {
+
+.rating>option {
   display: inline-block;
   position: relative;
   width: 1.1em;
 
 }
-.rating > option:hover,
-.rating > option:hover ~ option {
+
+.rating>option:hover,
+.rating>option:hover~option {
   color: transparent;
 }
-.rating > option:hover:before,
-.rating > option:hover ~ option:before {
-   content: "\2B50";
-   position: absolute;
-   left: 0; 
-   color: gold;
-}
 
- option[checked="true"]:before  {
+.rating>option:hover:before,
+.rating>option:hover~option:before {
   content: "\2B50";
   position: absolute;
-  left: 0; 
+  left: 0;
   color: gold;
-} 
+}
+
+option[checked="true"]:before {
+  content: "\2B50";
+  position: absolute;
+  left: 0;
+  color: gold;
+}
 
 option[checked="false"] {
   color: transparent;
@@ -216,4 +241,3 @@ option[checked="false"] {
 .invisible {
   color: transparent;
 }
-

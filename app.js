@@ -2,15 +2,15 @@ const apiKey = 'b0b371271a4f917bf40f513c72c92810'
 const baseUrl = `https://api.themoviedb.org/3/`
 const url = `https://api.themoviedb.org/3/movie/550?api_key=${apiKey}`
 
-function createNode(element) {
+function createNode (element) {
   return document.createElement(element)
 }
 
-function append(parent, el) {
+function append (parent, el) {
   return parent.appendChild(el)
 }
 
-async function getUpcoming() {
+async function getUpcoming () {
   const root = document.getElementById('movies')
   const container = document.createElement('div')
   container.setAttribute('class', 'container')
@@ -37,7 +37,7 @@ async function getUpcoming() {
     img.setAttribute('class', 'poster')
     img.src = `${'https://image.tmdb.org/t/p/w185' + el.poster_path}`
     img.setAttribute('id', el.id)
-    img.addEventListener('click', function (event) {
+    img.addEventListener('click', function (event) { // redirect to movie details after clicked
       window.location = `file:///E:/new_desktop/coding/movieApp/movieDetails.html?movieId=${event.target.id}`
     })
 
@@ -53,12 +53,12 @@ async function getUpcoming() {
     append(movieDetails, rating)
 
     if (i > 7) {
-      movieDetails.classList.add('hiddenClass')
+      movieDetails.classList.add('hiddenClass') // show only first eight items (four per row)
     }
   })
 }
 
-async function getMovieDetails(event) {
+async function getMovieDetails (event) {
   const url = event.srcElement.URL
 
   const movieId = url.substr(url.indexOf('=') + 1, url.length)
@@ -66,6 +66,8 @@ async function getMovieDetails(event) {
   const response = await window.fetch(`${baseUrl}movie/${movieId}?api_key=${apiKey}`)
   const movie = await response.json()
   const root = document.getElementById('root')
+
+  console.log(movie)
 
   const detailsContTop = document.createElement('div')
   detailsContTop.setAttribute('class', 'detailsContTop')
@@ -134,32 +136,30 @@ async function getMovieDetails(event) {
   const starRating = createNode('div')
   starRating.setAttribute('class', 'rating')
 
-  // const starRating = `<div class="rating">
-  //   <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-  //   </div>`
-
   append(root, title)
   append(root, detailsContTop)
 
   append(detailsContTop, img)
   append(detailsContTop, details)
 
-  append(details, movieRating)
   append(details, popularity)
   append(details, language)
   append(details, prodCompanies)
   append(details, genres)
-  append(details, tagline)
+  // append(details, tagline)
   append(details, plot)
   append(details, runtime)
   append(details, imdbLink)
   append(imdbLink, imdbLogo)
 
-  let userRating = window.localStorage.getItem('userRating')
+  let userRating = window.localStorage.getItem(movie.id)
   const rateMovie = createNode('p')
-  rateMovie.innerHTML = 'Rate movie: '
+  rateMovie.innerHTML = 'Rate the movie'
+  append(details, movieRating)
   append(details, starRating)
   append(starRating, rateMovie)
+
+  // logic for rating a movie
   if (!userRating) {
     for (let i = 10; i > 0; i--) {
       const stars = createNode('option')
@@ -171,33 +171,32 @@ async function getMovieDetails(event) {
       append(starRating, stars)
     }
   } else {
-    rateMovie.innerHTML = `Your rating: ${userRating}`
+    rateMovie.innerHTML = `Your rating: ${JSON.parse(userRating)}` // TODO: show stars after rating
   }
   let radios = document.getElementsByName('stars')
 
+  // rating with stars like on IMDB -- needs little bit of refactoring
   for (let i = 0; i < radios.length; i++) {
     radios[i].onclick = function () {
       let userRating = radios[i].value
-      console.log(userRating)
-      window.localStorage.setItem('userRating', JSON.stringify(userRating))
+      window.localStorage.setItem(movie.id, JSON.stringify(userRating))
       for (let j = i; j < 10; j++) {
-        radios[j].setAttribute('checked', true)
+        radios[j].setAttribute('checked', true) // show as much stars as user rating of the movie
         for (let k = i - 1; k >= 0; k--) {
-          radios[k].setAttribute('checked', false)
+          radios[k].setAttribute('checked', false) // hide rest of the stars
         }
       }
     }
   }
-
 }
 
-function loadMore(items) {
-  [].forEach.call(document.querySelectorAll('.hiddenClass'), function (item, i) {
-    if (i < 8) {
+function loadMore (items) {
+  [].forEach.call(document.querySelectorAll('.hiddenClass'), function (item, i) { // call this selected array of data
+    if (i < 8) { // show only first eight movies (four per row) - the rest have .hiddeClass appended
       item.classList.remove('hiddenClass')
     }
     if (document.querySelectorAll('.hiddenClass').length === 0) {
-      document.querySelector('.loadMore').style.display = 'none'
+      document.querySelector('.loadMore').style.display = 'none' // remove button after all data loaded
     }
   })
 }
