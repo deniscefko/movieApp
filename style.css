@@ -252,6 +252,7 @@ option[checked="false"] {
   margin: auto;
   box-shadow: 10px 5px 5px rgb(0, 0, 0);
   height: 520px;
+  position: relative;
 }
 
 .rouletteTitle {
@@ -279,3 +280,18 @@ option[checked="false"] {
   color: white;
   padding-left: 55px;
 } 
+
+.rouletteBtn {
+  background-image: url(img/roulette.png);
+  background-size: 100px;
+  border: 2px solid rgb(0, 0, 0);
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  padding-left: 20px;
+  position: absolute;
+  top: 550px;
+  left: 120px;
+  background-position: center;
+  outline: none;
+}

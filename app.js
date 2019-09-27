@@ -26,7 +26,6 @@ async function getUpcoming() {
 
   const upcoming = await window.fetch(`${baseUrl}movie/upcoming?api_key=${apiKey}`)
   const upcomingJson = await upcoming.json()
-  console.log(upcomingJson.results)
   let results = upcomingJson.results
 
   return results.forEach((el, i) => {
@@ -68,15 +67,16 @@ async function getUpcoming() {
 }
 
 async function getMovieDetails(event) {
-  const url = event.srcElement.URL
-
-  const movieId = url.substr(url.indexOf('=') + 1, url.length)
-
+  let url, movieId
+  if (event.srcElement) {
+    url = event.srcElement.URL
+    movieId = url.substr(url.indexOf('=') + 1, url.length)
+  } else {
+    movieId = event
+  }
   const response = await window.fetch(`${baseUrl}movie/${movieId}?api_key=${apiKey}`)
   const movie = await response.json()
   const root = document.getElementById('root')
-
-  console.log(movie)
 
   const detailsContTop = document.createElement('div')
   detailsContTop.setAttribute('class', 'detailsContTop')
@@ -200,40 +200,19 @@ async function getMovieDetails(event) {
 }
 
 async function roulette() {
-  const rouletteCont = document.getElementById('rouletteCont')
-
-  // const genres = createNode('form')
-  // genres.setAttribute('action', 'app.js')
-
-  // append(rouletteCont, genres)
-
-  const genreList = {
-    35: 'Comedy',
-    18: 'Drama',
-    80: 'Crime',
-    28: 'Action',
-    53: 'Thriller',
-    876: 'Sci-fi',
-    27: 'Horror',
-    9648: 'Mystery',
-    16: 'Animation',
-    12: 'Adventure'
+  const genreList = document.getElementsByClassName('genreList')
+  for (let i = 0; i < genreList.length; i++) {
+    genreList[i].onclick = async function () { // choosing genre radio button
+      // fetch movie with chosen genre
+      const response = await window.fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreList[i].value}`)
+      const moviesByGenre = await response.json()
+      // getting random item from array
+      var randomMovie = moviesByGenre.results[Math.floor(Math.random() * (moviesByGenre.results.length - 1))]
+      console.log(randomMovie)
+      window.location = `${appLocation}movieDetails.html?movieId=${randomMovie.id}`
+      getMovieDetails(randomMovie.id)
+    }
   }
-
-  // for (let prop in genreList) {
-  //   const div = createNode('div')
-  //   div.setAttribute('class', 'genreNames')
-
-  //   const input = createNode('input')
-  //   input.setAttribute('type', 'radio')
-  //   input.setAttribute('genreId', prop)
-  //   input.setAttribute('value', genreList[prop])
-  //   input.setAttribute('class', 'genreList')
-  //   input.innerHTML = input.value
-  //   append(genres, div)
-  //   append(div, input)
-  //   // div.innerHTML = genreList[prop]
-  // }
 }
 
 function loadMore(items) {

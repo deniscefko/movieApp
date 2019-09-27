@@ -11,47 +11,45 @@
 
 </head>
 
-<body onload="roulette(event)" class="rouletteBody">
+<body class="rouletteBody" onload="roulette()">
 
     <div id="rouletteCont">
         <h1 class="rouletteTitle">Movie Roulette</h1>
-        <form action="app.js">
-            <p class="selectGenre">Select genre</p>
-            <div class="genreNames">
-                <input type="radio" name="genre" genreId="12" value="Adventure" class="genreList">Adventure
-            </div>
-            <div class="genreNames">
-                <input type="radio" name="genre" genreId="16" value="Animation" class="genreList">Animation
-            </div>
-            <div class="genreNames">
-                <input type="radio" name="genre" genreId="18" value="Drama" class="genreList">Drama
-            </div>
-            <div class="genreNames">
-                <input type="radio" name="genre" genreId="27" value="Horror" class="genreList">Horror
-            </div>
-            <div class="genreNames">
-                <input type="radio" name="genre" genreId="28" value="Action" class="genreList">Action
-            </div>
-            <div class="genreNames">
-                <input type="radio" name="genre" genreId="35" value="Comedy" class="genreList">Comedy
-            </div>
-            <div class="genreNames">
-                <input type="radio" name="genre" genreId="53" value="Thriller" class="genreList">Thriller
-            </div>
-            <div class="genreNames">
-                <input type="radio" name="genre" genreId="80" value="Crime" class="genreList">Crime
-            </div>
-            <div class="genreNames">
-                <input type="radio" name="genre" genreId="876" value="Sci-fi" class="genreList">Sci-fi
-            </div>
-            <div class="genreNames">
-                <input type="radio" name="genre" genreId="9648" value="Mystery" class="genreList">Mystery
-            </div>
-        </form>
+        <p class="selectGenre">Select genre</p>
+        <div class="genreNames">
+            <input type="radio" name="genre" value="12" genre="Adventure" class="genreList">Adventure
+        </div>
+        <div class="genreNames">
+            <input type="radio" name="genre" value="16" genre="Animation" class="genreList">Animation
+        </div>
+        <div class="genreNames">
+            <input type="radio" name="genre" value="18" genre="Drama" class="genreList">Drama
+        </div>
+        <div class="genreNames">
+            <input type="radio" name="genre" value="27" genre="Horror" class="genreList">Horror
+        </div>
+        <div class="genreNames">
+            <input type="radio" name="genre" value="28" genre="Action" class="genreList">Action
+        </div>
+        <div class="genreNames">
+            <input type="radio" name="genre" value="35" genre="Comedy" class="genreList">Comedy
+        </div>
+        <div class="genreNames">
+            <input type="radio" name="genre" value="53" genre="Thriller" class="genreList">Thriller
+        </div>
+        <div class="genreNames">
+            <input type="radio" name="genre" value="80" genre="Crime" class="genreList">Crime
+        </div>
+        <div class="genreNames">
+            <input type="radio" name="genre" value="876" genre="Sci-fi" class="genreList">Sci-fi
+        </div>
+        <div class="genreNames">
+            <input type="radio" name="genre" value="9648" genre="Mystery" class="genreList">Mystery
+        </div>
+        <button class="rouletteBtn">
     </div>
 
     <script src="app.js"></script>
-
 </body>
 
 </html>>
