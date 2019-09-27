@@ -200,7 +200,44 @@ async function getMovieDetails(event) {
 }
 
 async function roulette() {
-  
+  const rouletteCont = document.getElementById('rouletteCont')
+
+  const genres = createNode('form')
+  genres.setAttribute('action', 'app.js')
+
+  const selectGenre = createNode('p')
+  selectGenre.setAttribute('class', 'selectGenre')
+  selectGenre.innerHTML = 'Select genre'
+
+  append(rouletteCont, genres)
+  append(genres, selectGenre)
+
+  const genreList = {
+    35: 'Comedy',
+    18: 'Drama',
+    80: 'Crime',
+    28: 'Action',
+    53: 'Thriller',
+    876: 'Sci-fi',
+    27: 'Horror',
+    9648: 'Mystery',
+    16: 'Animation',
+    12: 'Adventure'
+  }
+
+  for (let prop in genreList) {
+    const div = createNode('div')
+    div.setAttribute('class', 'genreNames')
+
+    const input = createNode('input')
+    input.setAttribute('type', 'radio')
+    input.setAttribute('genreId', prop)
+    input.setAttribute('value', genreList[prop])
+    input.setAttribute('class', 'genreList')
+    div.innerHTML = genreList[prop]
+    append(genres, div)
+    append(div, input)
+  }
 }
 
 function loadMore(items) {

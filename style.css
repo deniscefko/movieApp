@@ -130,7 +130,7 @@ p {
   outline: none;
 }
 
-.roulette:hover {
+#roulette:hover {
   background-image: url(img/roulette.gif);
 }
 
@@ -242,18 +242,33 @@ option[checked="false"] {
   color: transparent;
 }
 
-#rouletteCont {
-  max-width: 1400px;
+/* ROULETTE */
+
+.rouletteBody {
   display: flex;
-  align-items: vertical;
+}
+
+#rouletteCont {
+  margin: auto;
 }
 
 .rouletteTitle {
-  margin: 50px auto;
+  margin-top: 70px; 
   color: white;
-  width: 100%;
 }
 
 .selectGenre {
+  color: white;
+  margin-bottom: 15px;
+}
 
+.genreList {
+  /* display: block; */
+  margin: 8px;
+  /* float: left; */
+}
+
+.genreNames {
+  /* display: block; */
+  color: white;
 }
