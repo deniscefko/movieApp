@@ -202,15 +202,10 @@ async function getMovieDetails(event) {
 async function roulette() {
   const rouletteCont = document.getElementById('rouletteCont')
 
-  const genres = createNode('form')
-  genres.setAttribute('action', 'app.js')
+  // const genres = createNode('form')
+  // genres.setAttribute('action', 'app.js')
 
-  const selectGenre = createNode('p')
-  selectGenre.setAttribute('class', 'selectGenre')
-  selectGenre.innerHTML = 'Select genre'
-
-  append(rouletteCont, genres)
-  append(genres, selectGenre)
+  // append(rouletteCont, genres)
 
   const genreList = {
     35: 'Comedy',
@@ -225,19 +220,20 @@ async function roulette() {
     12: 'Adventure'
   }
 
-  for (let prop in genreList) {
-    const div = createNode('div')
-    div.setAttribute('class', 'genreNames')
+  // for (let prop in genreList) {
+  //   const div = createNode('div')
+  //   div.setAttribute('class', 'genreNames')
 
-    const input = createNode('input')
-    input.setAttribute('type', 'radio')
-    input.setAttribute('genreId', prop)
-    input.setAttribute('value', genreList[prop])
-    input.setAttribute('class', 'genreList')
-    div.innerHTML = genreList[prop]
-    append(genres, div)
-    append(div, input)
-  }
+  //   const input = createNode('input')
+  //   input.setAttribute('type', 'radio')
+  //   input.setAttribute('genreId', prop)
+  //   input.setAttribute('value', genreList[prop])
+  //   input.setAttribute('class', 'genreList')
+  //   input.innerHTML = input.value
+  //   append(genres, div)
+  //   append(div, input)
+  //   // div.innerHTML = genreList[prop]
+  // }
 }
 
 function loadMore(items) {

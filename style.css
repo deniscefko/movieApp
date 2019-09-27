@@ -250,25 +250,32 @@ option[checked="false"] {
 
 #rouletteCont {
   margin: auto;
+  box-shadow: 10px 5px 5px rgb(0, 0, 0);
+  height: 520px;
 }
 
 .rouletteTitle {
-  margin-top: 70px; 
+  margin-top: 50px; 
   color: white;
+  /* border-radius: 5px;
+  border: 3px solid rgb(255, 208, 0); */
+  padding: 10px 30px 10px 30px;
 }
 
 .selectGenre {
   color: white;
-  margin-bottom: 15px;
+  margin: 0 0 5px 40px;
+  font-size: 20px;
+  font-weight: 550;
 }
 
 .genreList {
-  /* display: block; */
-  margin: 8px;
-  /* float: left; */
+  margin: 15px 8px 8px 15px;
+  color: white;
+  /* padding-left: 15px; */
 }
 
-.genreNames {
-  /* display: block; */
+ .genreNames {
   color: white;
-}
+  padding-left: 55px;
+} 
