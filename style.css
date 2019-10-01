@@ -35,7 +35,8 @@ p {
   width: 180px;
   height: 350px;
   margin: 20px 15px 0 15px;
-  flex: 1 1 auto;
+  flex: 0 0 20%;
+  justify-content: center; 
   position: relative;
 }
 
@@ -72,8 +73,8 @@ p {
 
 .ratings {
   position: absolute;
-  bottom: 315px;
-  left: 180px;
+  bottom: 310px;
+  left: 165px; 
   height: 35px;
   width: 35px;
   border: 2.5px solid rgb(255, 196, 0);
@@ -159,7 +160,6 @@ p {
 }
 
 .details {
-  /* flex: auto; */
   margin-top: 10px;
   color: white;
   margin-left: 40px;
@@ -258,8 +258,6 @@ option[checked="false"] {
 .rouletteTitle {
   margin-top: 50px; 
   color: white;
-  /* border-radius: 5px;
-  border: 3px solid rgb(255, 208, 0); */
   padding: 10px 30px 10px 30px;
 }
 
@@ -273,7 +271,6 @@ option[checked="false"] {
 .genreList {
   margin: 15px 8px 8px 15px;
   color: white;
-  /* padding-left: 15px; */
 }
 
  .genreNames {

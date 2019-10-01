@@ -46,7 +46,7 @@ async function getUpcoming() {
     img.src = `${'https://image.tmdb.org/t/p/w185' + el.poster_path}`
     img.setAttribute('id', el.id)
     img.addEventListener('click', function (event) { // redirect to movie details after clicked
-      window.location = `${appLocation}movieDetails.html?movieId=${event.target.id}`
+      window.location = `${appLocation}movieDetails.html?movieId=${event.target.id}` // getMovieDetails() event parametar
     })
 
     const rating = createNode('div')
@@ -66,13 +66,13 @@ async function getUpcoming() {
   })
 }
 
-async function getMovieDetails(event) {
+async function getMovieDetails(param) {
   let url, movieId
-  if (event.srcElement) {
-    url = event.srcElement.URL
+  if (param.srcElement) { // we get event from click event where we extract id from URL
+    url = param.srcElement.URL
     movieId = url.substr(url.indexOf('=') + 1, url.length)
-  } else {
-    movieId = event
+  } else { // or we get id from roulette random movie
+    movieId = param
   }
   const response = await window.fetch(`${baseUrl}movie/${movieId}?api_key=${apiKey}`)
   const movie = await response.json()
@@ -155,7 +155,6 @@ async function getMovieDetails(event) {
   append(details, language)
   append(details, prodCompanies)
   append(details, genres)
-  // append(details, tagline)
   append(details, plot)
   append(details, runtime)
   append(details, imdbLink)
@@ -208,9 +207,8 @@ async function roulette() {
       const moviesByGenre = await response.json()
       // getting random item from array
       var randomMovie = moviesByGenre.results[Math.floor(Math.random() * (moviesByGenre.results.length - 1))]
-      console.log(randomMovie)
       window.location = `${appLocation}movieDetails.html?movieId=${randomMovie.id}`
-      getMovieDetails(randomMovie.id)
+      getMovieDetails(randomMovie.id) // getMovieDetails() id parametar
     }
   }
 }
